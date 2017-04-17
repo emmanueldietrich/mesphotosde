@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>{% block title %}Mes Photos De{% endblock %}</title>
+        
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="container">
+            <div id="header" class="jumbotron">
+              <h1>Mes albums photos</h1>
+              <p>
+                Ce projet est propulsé par Symfony,
+                et construit grâce au MOOC OpenClassrooms et SensioLabs.
+              </p>
+              <p>
+                <a class="btn btn-primary btn-lg" href="https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony2">
+                  Participer au MOOC »
+                </a>
+              </p>
+            </div>
+            
+            <div>
+              {# On affiche tous les messages flash dont le nom est « info » #}
+              {% for message in app.session.flashbag.get('info') %}
+                <p>Message flash : {{ message }}</p>
+              {% endfor %}
+            </div>
+        
+            <div class="row">
+              <div id="menu" class="col-md-3">
+                <h3>Bonjour{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} {{ app.user.username|title }}{% endif %}</h3>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="{{ path('ed_home_homepage') }}">Accueil</a></li>
+                  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                  <li><a href="{{ path('_ed_album_list') }}">Tous mes albums</a></li>
+                  <li><a href="{{ path('_ed_image_list') }}">Toutes mes images</a></li>
+                  <li><a href="{{ path('_ed_album_add') }}">Créer un album</a></li>
+                  <li><a href="{{ path('_ed_image_add') }}">Uploader des images</a></li>
+                  <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                  {%  else %}
+				  <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                  {%  endif %}                 
+                </ul>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED')  %}
+                {{ render(controller("EDAlbumBundle:Album:menu", {'limit': 3})) }}
+                {%  endif %}
+              </div>
+              <div id="content" class="col-md-9">
+                {% block body %}
+                {% endblock %}
+              </div>
+            </div>
+        
+            <hr>
+        
+            <footer>
+              <p>Mes Photos De © {{ 'now'|date('Y') }}</p>
+            </footer>
+          </div>
+        
+
+        {% block javascripts %}
+            {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

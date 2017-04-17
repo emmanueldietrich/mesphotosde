@@ -1,0 +1,22 @@
+{% extends "EDAlbumBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Liste des images{% endblock %}
+
+{% block sectionTitle %}Mes images{% endblock %}
+
+{% block edalbum_body %}  
+  {%  if images is not empty %}
+  <ul>
+  	{% for image in images %}
+  	<li>Image {{ image.id }} - {{ image.alt }}
+  	<a href="{{ path('_ed_image_view',{ 'id' : image.id}) }}">
+  	<img src="{{ image.url }}" alt="{{ image.alt }}" height="100px"/>
+  	</a>
+  	</li>
+  	{% endfor %}
+  </ul>
+  {% else %}
+  <p><i>Il n'y a aucune image.</i></p>
+  <p><a href="{{ path('_ed_image_add') }}">Uploader une image</a></p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% if menuAlbums is not empty %}
+<h4>Mes derniers albums</h4>
+<ul class="nav nav-pills nav-stacked">
+  {% for album in menuAlbums %}
+    <li>
+      <a href="{{ path('_ed_album_view', {
+  		'id': album.id,
+  		slug : album.slug
+  		}) }}">
+        {{ album.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{%  endif %}

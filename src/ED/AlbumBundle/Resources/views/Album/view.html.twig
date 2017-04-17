@@ -1,0 +1,43 @@
+{% extends "EDAlbumBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Voir l'album {{album.title}}{% endblock %}
+
+{% block edalbum_body %}
+    <h2>Album <i>{{ album.title }}</i></h2>
+
+	
+	<div class="well">
+    <p>Description : {%  if album.description is not empty %}{{ album.description|nl2br }}{% else %}<i>Non renseigné</i>{%  endif %}</p>
+    </div>
+    
+    
+    {% if album.images is not empty %}
+    <div class="well">
+    <p>Contenu : </p>
+    {% for image in album.images  %}
+    <a href="{{ path('_ed_image_view',{ 'id' : image.id, slug : album.slug}) }}"><img src="{{ image.url }}" alt="{{ image.alt }}" height="150px"/></a>
+    {%  endfor %}
+    </div>
+    {% endif %}
+    
+    <p>
+        <a href="{{ path('_ed_album_list') }}" class="btn btn-default">
+          <i class="glyphicon glyphicon-chevron-left"></i>
+          Liste des albums
+        </a>
+        <a href="{{ path('_ed_album_edit', {'id': album.id, 'slug' : album.slug}) }}" class="btn btn-default">
+          <i class="glyphicon glyphicon-edit"></i>
+          Modifier l'album
+        </a>
+        <a href="{{ path('_ed_album_delete', {'id': album.id, 'slug' : album.slug}) }}" class="btn btn-danger">
+          <i class="glyphicon glyphicon-trash"></i>
+          Supprimer l'album
+        </a>
+    </p>
+    
+    
+    
+    
+    
+	
+{% endblock %}

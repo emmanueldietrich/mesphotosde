@@ -1,0 +1,21 @@
+{% extends "EDAlbumBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Liste des albums{% endblock %}
+
+{% block sectionTitle %}Mes albums{% endblock %}
+
+{% block edalbum_body %}
+  {%  if albums is not empty %}
+  <ul>
+  	{% for album in albums %}
+  	<li>Album {{ album.title }}
+  	<a href="{{ path('_ed_album_view',{ 'id' : album.id, 'slug' : album.slug }) }}">Voir</a> - 
+  	<a href="{{ path('_ed_album_edit',{ 'id' : album.id, 'slug' : album.slug}) }}">Modifier</a>
+  	</li>
+  	{% endfor %}
+  </ul>
+  {% else %}
+  <p><i>Il n'y a aucun album.</i></p>
+  <p><a href="{{ path('_ed_album_add') }}">Créer un album.</a></p>
+  {% endif %}
+{% endblock %}

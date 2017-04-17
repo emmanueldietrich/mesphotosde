@@ -1,0 +1,36 @@
+{% extends "EDAlbumBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Voir l'image {{image.alt|title}}{% endblock %}
+
+{% block edalbum_body %}
+    <h2>Image {{ image.alt }}</h2>
+    
+    <div class="well">
+    	<img src="{{ image.url }}" alt="{{ image.alt }}" height="300px"/>
+    <p>URL : {{ image.url }}</p>
+    </div>
+    
+    {#% if relatedAlbums.length > 0 %#}
+    <div class=well>
+    	Liste des albums dans laquelle l'image apparait:
+    	<ul>
+    		{% for album in relatedAlbums %}
+    		<li><a href="{{ path('_ed_album_view',{ 'id' : album.id, slug : album.slug}) }}">{{ album.title }}</a></li>
+    		{%  endfor %}    		
+    	</ul>
+    </div>
+    {#% endif %#}
+    
+    <p>
+        <a href="javascript:history.back()" class="btn btn-default">
+          <i class="glyphicon glyphicon-chevron-left"></i>
+          Page précédente
+        </a>
+    </p>
+    
+    
+    
+    
+    
+	
+{% endblock %}

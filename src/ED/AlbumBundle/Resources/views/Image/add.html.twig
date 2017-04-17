@@ -1,0 +1,17 @@
+{% extends "EDAlbumBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Nouvelle image{% endblock %}
+
+{% block edimage_body %}
+    <h1>Upload d'une image </h1>
+    
+    {{ form(form) }}
+      
+    <p>
+    	<a href="{{ path('_ed_image_list') }}" class="btn btn-default">
+          <i class="glyphicon glyphicon-chevron-left"></i>
+          Retour
+    	</a>
+    </p>
+  
+{% endblock %}

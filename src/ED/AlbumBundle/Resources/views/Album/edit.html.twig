@@ -1,0 +1,18 @@
+{% extends "EDAlbumBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modifier l'album {{ album.title }}{% endblock %}
+
+{% block edalbum_body %}
+	<h1>Modification de l'album {{ album.title }}</h1>
+  
+    {{ include("EDAlbumBundle:Album:form.html.twig") }}
+    
+      
+    <p>
+        {#}<a href="{{ path('_ed_album_view',{ 'id' : album.id, 'slug' : album.slug }) }}" class="btn btn-default">
+          <i class="glyphicon glyphicon-chevron-left"></i>
+          Retour
+    	</a>#}
+    </p>
+  
+{% endblock %}

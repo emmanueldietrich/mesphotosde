@@ -1,0 +1,54 @@
+#############################
+#   Routes ED\AlbumBundle   #
+#############################
+
+# Route pour les albums 
+_ed_album_list:
+    path:     /list-albums/
+    defaults:  
+        _controller: EDAlbumBundle:Shelf:album 
+
+_ed_album_add :
+    path:     /add-album/
+    defaults: 
+        _controller: EDAlbumBundle:Album:add
+    
+_ed_album_view :
+    path:     /view-album/{id}
+    defaults:  
+        _controller: EDAlbumBundle:Album:view
+    requirements:
+        id: \d+
+
+_ed_album_edit :
+    path:     /edit-album/{id}
+    defaults: 
+        _controller: EDAlbumBundle:Album:edit
+    requirements:
+        id: \d+
+
+_ed_album_delete :
+    path:     /delete-album/{id}
+    defaults: 
+        _controller: EDAlbumBundle:Album:delete
+    requirements:
+        id: \d+
+
+# Routes pour les images
+_ed_image_list:
+    path:     /list-images/
+    defaults:  
+        _controller: EDAlbumBundle:Shelf:image
+
+_ed_image_add :
+    path:     /add-image/
+    defaults: 
+        _controller: EDAlbumBundle:Image:add
+    
+
+_ed_image_view :
+    path:     /view-image/{id}
+    defaults:  
+        _controller: EDAlbumBundle:Image:view
+    requirements:
+        id: \d+

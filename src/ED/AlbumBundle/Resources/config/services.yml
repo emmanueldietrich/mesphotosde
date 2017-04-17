@@ -1,0 +1,16 @@
+services:
+    ed_album.slugify:
+        class: ED\AlbumBundle\Tools\EDSlugify
+
+    ed_album.email.image_mailer:
+      class: ED\AlbumBundle\Tools\ImageMailer
+      arguments:
+          - "@mailer"
+
+#    ed_album.doctrine_listener.image_creation:
+#      class: ED\AlbumBundle\DoctrineListener\ImageCreationListener
+#      arguments:
+#        - "@ed_album.email.image_mailer"
+#      tags:
+#        - { name: doctrine.event_listener, event: postPersist }
+        
